@@ -1,0 +1,17 @@
+###
+GET http://localhost:4004/odata/v4/cap/Requests
+
+###
+POST  http://localhost:4004/odata/v4/cap/Requests
+Content-Type: application/json
+
+{
+    "reqNumber":"14",
+    "Status":2
+}
+
+###
+GET http://localhost:4004/odata/v4/cap/RequestView
+
+
+ 
