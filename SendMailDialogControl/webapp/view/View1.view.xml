@@ -1,0 +1,11 @@
+<mvc:View
+  controllerName="project1.controller.View1"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  xmlns:custom="project1.controller">
+
+  <VBox class="sapUiSmallMargin">
+    <Button text="Open Comment Dialog" press="onOpenDialogPress" /> 
+  </VBox>
+
+</mvc:View>
