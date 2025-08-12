@@ -1,0 +1,88 @@
+<mvc:View controllerName="com.media.media.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+     xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:u="sap.ui.unified" 
+    xmlns:smarttable="sap.ui.comp.smarttable" >
+    <Page id="page" title="{i18n>title}"> 
+        <smarttable:SmartTable
+     id='SmartTableId'
+            tableType="ResponsiveTable"
+            entitySet="MediaFile"
+            placeToolbarInTable="true"
+            class="sapUiSmallMarginTop" 
+            enableExport="false"
+            demandPopin="true"
+            showRowCount="true"  
+            enableCopy="false"
+            useExportToExcel="false"
+            enableAutoBinding="true"
+            showDetailsButton="true" 
+            enableAutoColumnWidth="true"
+            requestAtLeastFields="createdAt"
+        >
+            <smarttable:customToolbar>
+                <OverflowToolbar design="Info">
+                    <ToolbarSpacer />
+                    <u:FileUploader
+                        name="myFileUpload"
+                        icon="sap-icon://add" 
+                        buttonOnly="true"
+                        buttonText="Upload Media"
+                        uploadUrl="/odata/v2/media/MediaFile" 
+                        uploadOnChange="true"
+                        useMultipart="false"
+                        change="onUploadChange"
+                        uploadComplete="onUploadCompleted"
+                    />
+                </OverflowToolbar>
+            </smarttable:customToolbar>
+            <Table
+               
+                sticky="ColumnHeaders,HeaderToolbar"
+                contextualWidth="Desktop"
+                growing="true"
+                growingScrollToLoad="true"
+            >
+                <columns>
+                  
+                    <Column>
+                        <customData>
+                            <core:CustomData
+                                key="p13nData"
+                                value='\{"columnKey": "fileName", "columnIndex": "1", "leadingProperty": "fileName", "sortProperty": "fileName", "filterProperty": "fileName"}'
+                            />
+                        </customData>
+                        <Label text="{i18n>fileName}" />
+                    </Column>
+                     <Column>
+                        <customData>
+                            <core:CustomData
+                                key="p13nData"
+                                value='\{"columnKey": "mediaType", "columnIndex": "2", "leadingProperty": "mediaType", "sortProperty": "mediaType", "filterProperty": "mediaType"}'
+                            />
+                        </customData>
+                        <Label text="mediaType" />
+                    </Column> 
+                   
+                </columns>
+                <items>
+                    <ColumnListItem type="Active"> 
+                        <cells>
+                         <Link
+                                text="{fileName}"
+                                press="_onDocumentLinkPress"
+                            />
+                           <Text
+                                
+                                text="{mediaType}"
+                            /> 
+                           
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </smarttable:SmartTable>
+    
+    </Page>
+</mvc:View>

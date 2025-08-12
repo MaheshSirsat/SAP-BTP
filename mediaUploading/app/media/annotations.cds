@@ -1,0 +1,1 @@
+using MediaService as service from '../../srv/cat-service';
