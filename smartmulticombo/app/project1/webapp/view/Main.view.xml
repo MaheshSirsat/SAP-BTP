@@ -1,0 +1,96 @@
+<mvc:View
+    controllerName="project1.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData"
+    xmlns:smarttable="sap.ui.comp.smarttable"
+    xmlns:smartfilterbar="sap.ui.comp.smartfilterbar"
+    xmlns:smartField="sap.ui.comp.smartfield"
+        xmlns:core="sap.ui.core"
+
+    xmlns:f="sap.f"
+    xmlns="sap.m"
+>
+
+    <f:DynamicPage
+        id="dynamicPageEmployees"
+        class="sapUiSizeCompact"
+    >
+        <f:header>
+            <f:DynamicPageHeader pinnable="true">
+                <f:content>
+                    <smartfilterbar:SmartFilterBar
+                        id="smartFilterBar"
+                        entitySet="Employees"
+                        persistencyKey="PersistKey_Employees"
+                        useToolbar="false"
+                        showGoOnFB="false"
+                        liveMode="true"
+                        showFilterConfiguration="true"
+                        initialise="onSFBInitialise"
+                        search="onSearch">
+
+                        <smartfilterbar:controlConfiguration>
+                            <!-- Name Filter -->
+                            <smartfilterbar:ControlConfiguration
+                                key="name"
+                                index="10"
+                                label="Name"
+                                visibleInAdvancedArea="true"
+                                groupId="_BASIC"
+                            />
+
+                            <!-- Department Filter -->
+                            <smartfilterbar:ControlConfiguration
+                                key="department"
+                                index="20"
+                                label="Department"
+                                visibleInAdvancedArea="true"
+                                groupId="_BASIC"
+                            />
+
+                            
+                             <smartfilterbar:ControlConfiguration
+                                key="status"
+                                index="30"
+                                label="Status"
+                                visibleInAdvancedArea="true"
+                                filterType="searchExpression" groupId="_BASIC" >
+                                  <smartfilterbar:customControl>
+                                    <MultiComboBox
+                                        id="StatusDropDown"
+                                        items="{path: '/StatusDropDown',
+                                        sorter: {path: 'status' }}"
+                                    >
+                                        <items>
+                                            <core:Item
+                                                  key="{status}"
+                                        text="{status}"
+                                            />
+                                        </items>
+                                    </MultiComboBox>
+                                  
+                                </smartfilterbar:customControl>
+                            </smartfilterbar:ControlConfiguration>
+                        </smartfilterbar:controlConfiguration>
+
+                    </smartfilterbar:SmartFilterBar>
+                </f:content>
+            </f:DynamicPageHeader>
+        </f:header>
+
+        <f:content>
+            <smarttable:SmartTable
+                id="smartTable"
+                entitySet="Employees"
+                smartFilterId="smartFilterBar"
+                  beforeRebindTable="onBeforeRebindTable"
+                tableType="Table"
+                useExportToExcel="true"
+                header="Employees"
+                enableAutoBinding="true"
+                showRowCount="true"  initiallyVisibleFields="name,salary,status,department"
+            />
+        </f:content>
+    </f:DynamicPage>
+
+</mvc:View>
